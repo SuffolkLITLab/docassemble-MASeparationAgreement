@@ -71,8 +71,10 @@ code: |
   user_role = "plaintiff"
   user_ask_role = "plaintiff"
   About_this_Form
+  trial_court.address.county
+  docket_number
   users[0].name.full
-  _date
+  marriage_date
   set_progress(25)
   Mass_Agreement
   users.gather()
@@ -134,7 +136,7 @@ id: Marriage Information
 question: |
   Marriage Information
 fields:
-  - "Date of Marriage": _date
+  - "Date of Marriage": marriage_date
     datatype: date
   - "City": marriage_address_city
   - "State": marriage_address_state
@@ -212,10 +214,10 @@ review:
     button: |
       **State**:
       ${ marriage_address_state }
-  - Edit: _date
+  - Edit: marriage_date
     button: |
       **Date of Marriage**:
-      ${ _date }
+      ${ marriage_date }
   - Edit: users[1].address
     button: |
       **Petitioner #2's Address**:
