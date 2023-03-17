@@ -77,9 +77,22 @@ code: |
   marriage_date
   set_progress(25)
   Mass_Agreement
+  petitioner_a_right_to_consult
+  petitioner_b_right_to_consult
+  complete_agreement
+  party_debt
+  agreement_incorporation
+  legal_fees
+  petitioner_a_voluntarily
+  petitioner_b_voluntarily
   users.gather()
+  users[0].address.address
+  users[1].address.address
   set_parts(subtitle=str(users))
   set_progress(50)
+  merge_judgment
+  independent_conract
+  independent_except
   signature_date
   interview_order_separation_agreement_draft4 = True
 ---
@@ -143,25 +156,94 @@ fields:
 ---
 id: Agreements for this Separation
 question: |
-  Agreements for this Separation
+  Agreement that that this separation agreement is governed by Massachusetts laws.
 fields:
   - "Both Parties agree that this agreement is entered into in the Commonwealth of Massachusetts, and the parties agree that it shall be governed by the laws of the Commonwealth of Massachusetts.": Mass_Agreement
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - I accept the terms of use.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.  
+---
+id: Petitioner A's understanding of right to counsel.
+question: |
+  Petitioner A's understanding of right to counsel.
+fields:
   - "Petitioner A agrees that they understand that they had the right to consult with a lawyer of their choosing before signing this agreement.": petitioner_a_right_to_consult
     datatype: yesnoradio
+---
+id: Petitioner B's understanding of right to counsel.
+question: |
+  Petitioner B's understanding of right to counsel.
+fields:
   - "Petitioner B agrees that they understand that they had the right to consult with a lawyer of their choosing before signing this Agreement.": petitioner_b_right_to_consult
     datatype: yesnoradio
+---
+id: Agreement by all parties that this is the entirety of the agreement.
+question: |
+  Agreement by all parties that this is the entirety of the agreement.
+fields:
   - "The parties have included in this Agreement their entire understanding. No spoken or written statement outside of this Agreement was relied on by either party in signing this Agreement.": complete_agreement
     datatype: yesnoradio
+---
+id: No new debt
+question: |
+  Agreement that neither party will incur debt that the other will be responsible for.
+fields:
   - "The parties agree that neither party will charge or incur any debt for which the other party will be responsible. Neither party will use the other’s name to obtain credit of any kind.": party_debt
     datatype: yesnoradio
-  - "If, after this Agreement is signed by both parties, a judgment is entered in any divorce proceeding in any court brought by either Petitioner against the other, then this Agreement shall be incorporated in and made a part of that judgment. In addition to being incorporated in the judgment;": agreement_incorporation
+---
+id: Agreement incorporated into Divorce Judgment
+question: |
+  This agreement will be incorporated into any divorce judgment.
+fields:
+  - "If, after this Agreement is signed by both parties, a judgment is entered in any divorce proceeding in any court brought by either Petitioner against the other, then this Agreement shall be incorporated in and made a part of that judgment.": agreement_incorporation
     datatype: yesnoradio
+---
+id: Legal Fees
+question: |
+  Responsibility for legal fees and costs of proceedings 
+fields:
   - "The petitioners  are each responsible for their own legal fees and costs in these proceedings up to the present.": legal_fees
     datatype: yesnoradio
+---
+id: Petitioner A Agreement to sign
+question: |
+  Petitioner A agrees that they sign this Agreement freely and voluntarily.
+fields:
   - "Petitioner A signs this Agreement freely and voluntarily.": petitioner_a_voluntarily
     datatype: yesnoradio
+---
+id: Petitioner B Agreement to sign
+question: |
+  Petitioner B agrees that they sign this Agreement freely and voluntarily.
+fields:
   - "Petitioner B signs this Agreement freely and voluntarily.": petitioner_b_voluntarily
+    datatype: yesnoradio
+---
+id: Merged Judgment Agreement
+question: |
+  Agreements for judgment to merge
+fields:
+  - "Do you agree that this Agreement shall merge in the judgment so that it will not remain as an independent contract, and if there is a material change of circumstances in the future, the Court will be able to modify the terms(complaint for modification)?": merge_judgment
+    datatype: yesnoradio
+---
+id: Independent Contract Agreement
+question: |
+  Agreements for Independent Contract
+fields:
+  - "Do you agree that this Agreement shall survive as an independent contract? Which means that even if there were a material change of circumstances in the future, the Court would not be able to modify the terms unless there were countervailing equities(extraordinary circumstances, such as the incapacity of a party).": independent_conract
+    datatype: yesnoradio
+---
+id: Exceptions for Independent Contract Agreement
+question: |
+  Agreement for Independent Contract Exceptions
+fields:
+  - "Do you agree that the Agreement shall survive as an independent contract EXCEPT for those parts of the Agreement which deal with alimony / health insurance. The parts of the Agreement which deal with the alimony/ health insurance shall merge in the judgment? If there is a material change of circumstances in the future regarding the need for alimony/ health insurance, the Court will be able to modify the terms. For the other parts of the Agreement, even if there was a material change in circumstances in the future, the Court would not be able to modify those terms unless there were countervailing equities (extraordinary circumstances, such as the incapacity of a party).": independent_except
     datatype: yesnoradio
 ---
 id: preview separation_agreement_draft4
