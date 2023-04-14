@@ -91,8 +91,9 @@ code: |
   set_parts(subtitle=str(users))
   set_progress(50)
   merge_judgment
-  independent_conract
+  independent_contract
   independent_except
+  _shared_financial_statement
   signature_date
   interview_order_separation_agreement_draft4 = True
 ---
@@ -129,7 +130,7 @@ id: About this Form
 question: |
   About this Form
 subquestion: |
-  This form will help you draft a Seperation Agreement to be used in a Massachusetts Family and Probate Court. After completion of this form, both parties must sign the form before it can be filed with the Court.
+  This form will help you draft a Separation Agreement to be used in a Massachusetts Family and Probate Court. After completion of this form, both parties must sign the form and have it notarized before it can be filed with the Court.
   
   This form should be filled out to include as part of a divorce proceeding.
   
@@ -151,8 +152,8 @@ question: |
 fields:
   - "Date of Marriage": marriage_date
     datatype: date
-  - "City": marriage_address_city
-  - "State": marriage_address_state
+  - "City of Marriage": m_address_city
+  - "State of Marriage": m_address_state
 ---
 id: Agreements for this Separation
 question: |
@@ -164,7 +165,7 @@ fields:
     none of the above: False    
     minlength: 1
     choices:
-      - I accept the terms of use.
+      - Yes.
     validation messages:
       minlength: |
         You cannot continue unless you agree to this provision.  
@@ -174,77 +175,180 @@ question: |
   Petitioner A's understanding of right to counsel.
 fields:
   - "Petitioner A agrees that they understand that they had the right to consult with a lawyer of their choosing before signing this agreement.": petitioner_a_right_to_consult
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.  
 ---
 id: Petitioner B's understanding of right to counsel.
 question: |
   Petitioner B's understanding of right to counsel.
 fields:
   - "Petitioner B agrees that they understand that they had the right to consult with a lawyer of their choosing before signing this Agreement.": petitioner_b_right_to_consult
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.  
 ---
 id: Agreement by all parties that this is the entirety of the agreement.
 question: |
   Agreement by all parties that this is the entirety of the agreement.
 fields:
   - "The parties have included in this Agreement their entire understanding. No spoken or written statement outside of this Agreement was relied on by either party in signing this Agreement.": complete_agreement
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: No new debt
 question: |
   Agreement that neither party will incur debt that the other will be responsible for.
 fields:
   - "The parties agree that neither party will charge or incur any debt for which the other party will be responsible. Neither party will use the other’s name to obtain credit of any kind.": party_debt
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Agreement incorporated into Divorce Judgment
 question: |
   This agreement will be incorporated into any divorce judgment.
 fields:
   - "If, after this Agreement is signed by both parties, a judgment is entered in any divorce proceeding in any court brought by either Petitioner against the other, then this Agreement shall be incorporated in and made a part of that judgment.": agreement_incorporation
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Legal Fees
 question: |
   Responsibility for legal fees and costs of proceedings 
 fields:
-  - "The petitioners  are each responsible for their own legal fees and costs in these proceedings up to the present.": legal_fees
-    datatype: yesnoradio
+  - "The petitioners are each responsible for their own legal fees and costs in these proceedings up to the present.": legal_fees
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Petitioner A Agreement to sign
 question: |
   Petitioner A agrees that they sign this Agreement freely and voluntarily.
 fields:
   - "Petitioner A signs this Agreement freely and voluntarily.": petitioner_a_voluntarily
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Petitioner B Agreement to sign
 question: |
   Petitioner B agrees that they sign this Agreement freely and voluntarily.
 fields:
   - "Petitioner B signs this Agreement freely and voluntarily.": petitioner_b_voluntarily
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Merged Judgment Agreement
 question: |
   Agreements for judgment to merge
 fields:
   - "Do you agree that this Agreement shall merge in the judgment so that it will not remain as an independent contract, and if there is a material change of circumstances in the future, the Court will be able to modify the terms(complaint for modification)?": merge_judgment
-    datatype: yesnoradio
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Independent Contract Agreement
 question: |
   Agreements for Independent Contract
 fields:
-  - "Do you agree that this Agreement shall survive as an independent contract? Which means that even if there were a material change of circumstances in the future, the Court would not be able to modify the terms unless there were countervailing equities(extraordinary circumstances, such as the incapacity of a party).": independent_conract
-    datatype: yesnoradio
+  - "Do you agree that this Agreement shall survive as an independent contract? Which means that even if there were a material change of circumstances in the future, the Court would not be able to modify the terms unless there were countervailing equities(extraordinary circumstances, such as the incapacity of a party).": independent_contract
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: Exceptions for Independent Contract Agreement
 question: |
   Agreement for Independent Contract Exceptions
 fields:
-  - "Do you agree that the Agreement shall survive as an independent contract EXCEPT for those parts of the Agreement which deal with alimony / health insurance. The parts of the Agreement which deal with the alimony/ health insurance shall merge in the judgment? If there is a material change of circumstances in the future regarding the need for alimony/ health insurance, the Court will be able to modify the terms. For the other parts of the Agreement, even if there was a material change in circumstances in the future, the Court would not be able to modify those terms unless there were countervailing equities (extraordinary circumstances, such as the incapacity of a party).": independent_except
-    datatype: yesnoradio
+  - "Do both parties agree that the Agreement shall survive as an independent contract EXCEPT for those parts of the Agreement which deal with alimony / health insurance. The parts of the Agreement which deal with the alimony/ health insurance shall merge in the judgment? If there is a material change of circumstances in the future regarding the need for alimony/ health insurance, the Court will be able to modify the terms. For the other parts of the Agreement, even if there was a material change in circumstances in the future, the Court would not be able to modify those terms unless there were countervailing equities (extraordinary circumstances, such as the incapacity of a party)": independent_except
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
+---
+id: Financial Statement
+question: |
+  Confirmation that financial statements were shared
+fields:
+  - "Did both parties complete and share their financial statements?": _shared_financial_statement
+    label above field: True
+    datatype: checkboxes
+    none of the above: False    
+    minlength: 1
+    choices:
+      - Yes.
+    validation messages:
+      minlength: |
+        You cannot continue unless you agree to this provision.
 ---
 id: preview separation_agreement_draft4
 question: |
